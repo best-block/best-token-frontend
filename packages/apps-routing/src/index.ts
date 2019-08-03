@@ -7,6 +7,7 @@ import { Routing, Routes } from './types';
 import appSettings from '../../ui-settings/src';
 
 import template from './123code';
+import besttoken from './besttoken';
 import xpay from './xpay';
 import accounts from './accounts';
 import addressbook from './addressbook';
@@ -35,6 +36,7 @@ const routes: Routes = appSettings.uiMode === 'light'
     null,
     settings,
     template,
+    besttoken,
     xpay
   )
   : ([] as Routes).concat(
@@ -56,6 +58,7 @@ const routes: Routes = appSettings.uiMode === 'light'
     toolbox,
     js,
     template,
+    besttoken,
     xpay
   );
 

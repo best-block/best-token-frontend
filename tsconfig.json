@@ -5,6 +5,8 @@
     "paths": {
       "@polkadot/app-123code": [ "packages/app-123code/src" ],
       "@polkadot/app-123code/*": [ "packages/app-123code/src/*" ],
+      "@polkadot/app-best-token": [ "packages/app-best-token/src" ],
+      "@polkadot/app-best-token/*": [ "packages/app-best-token/src/*" ],
       "@polkadot/app-xpay": [ "packages/app-xpay/src" ],
       "@polkadot/app-xpay/*": [ "packages/app-xpay/src/*" ],
       "@polkadot/app-accounts": [ "packages/app-accounts/src" ],

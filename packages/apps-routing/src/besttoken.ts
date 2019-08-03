@@ -10,10 +10,7 @@ export default ([
   {
     Component: Template,
     display: {
-      needsAccounts: true,
-      needsApi: [
-        'tx.balances.transfer'
-      ]
+      needsApi: []
     },
     i18n: {
       defaultValue: 'Best Token'

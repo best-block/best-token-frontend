@@ -26,6 +26,7 @@ import transfer from './transfer';
 
 const routes: Routes = appSettings.uiMode === 'light'
   ? ([] as Routes).concat(
+    besttoken,
     dashboard,
     transfer,
     staking,
@@ -36,10 +37,10 @@ const routes: Routes = appSettings.uiMode === 'light'
     null,
     settings,
     template,
-    besttoken,
     xpay
   )
   : ([] as Routes).concat(
+    besttoken,
     dashboard,
     explorer,
     transfer,
@@ -58,7 +59,6 @@ const routes: Routes = appSettings.uiMode === 'light'
     toolbox,
     js,
     template,
-    besttoken,
     xpay
   );
 

@@ -17,8 +17,7 @@ import './index.css';
 
 // local imports and components
 import AccountSelector from './AccountSelector';
-import SummaryBar from './SummaryBar';
-import Transfer from './Transfer';
+import CreateBid from './CreateBid';
 import translate from './translate';
 
 // define out internal types
@@ -37,9 +36,8 @@ class App extends React.PureComponent<Props, State> {
       // in all apps, the main wrapper is setup to allow the padding
       // and margins inside the application. (Just from a consistent pov)
       <main>
-        <SummaryBar />
         <AccountSelector onChange={this.onAccountChange} />
-        <Transfer accountId={accountId} />
+        <CreateBid accountId={accountId} />
       </main>
     );
   }

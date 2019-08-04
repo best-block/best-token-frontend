@@ -12,7 +12,8 @@ import React from 'react';
 import { withCalls, withMulti } from '@polkadot/ui-api/with';
 import { formatNumber } from '@polkadot/util';
 
-import MarketsViewer from './BannersViewer';
+import BannersViewer from './BannersViewer';
+import { AccountId } from '@plugnet/types';
 
 type Props = BareProps & ComponentProps & {
   chain_subscribeNewHead?: HeaderExtended
@@ -22,7 +23,7 @@ const ZERO = new Balance(0);
 
 class Banners extends React.PureComponent<Props> {
   render () {
-    const { balances, chain_subscribeNewHead, validators } = this.props;
+    const { balances, chain_subscribeNewHead, validators, accountId } = this.props;
     const nextSorted = this.sortByBalance(
       []
     );
@@ -38,7 +39,7 @@ class Banners extends React.PureComponent<Props> {
 
     return (
       <div className='staking--Overview'>
-        <MarketsViewer />
+        <BannersViewer accountId={accountId} />
         
       </div>
     );
@@ -59,6 +60,6 @@ class Banners extends React.PureComponent<Props> {
 export default withMulti(
   Banners,
   withCalls<Props>(
-    'derive.chain.subscribeNewHead'
+    ['query.bannerStorage.banner', { propName: 'banners' }]
   )
 );

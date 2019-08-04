@@ -1,12 +1,13 @@
 {
   "name": "@polkadot/app-best-token",
   "version": "0.33.0-beta.38",
-  "description": "A basic app that shows the ropes on customisation",
+  "description": "An auction app build with substrate",
   "main": "index.js",
   "scripts": {},
-  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "author": "Harry Liu <2411mail@gmail.com>, CaoShuai <github.com/caosbad>",
   "maintainers": [
-    "Jaco Greeff <jacogr@gmail.com>"
+    "Harry Liu <2411mail@gmail.com>",
+    "CaoShuai <github.com/caosbad>"
   ],
   "license": "Apache-2.0",
   "dependencies": {

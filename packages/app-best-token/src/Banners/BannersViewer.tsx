@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BN from 'bn.js';
 import { withCalls } from '@polkadot/ui-api/with';
-
+import {Banners} from './types';
 // import KittyCard from './KittyCard';
 // import OwnedKittyViewer from './OwnedKittyViewer';
 
@@ -13,12 +13,14 @@ const MarketsWrapper = styled.div`
 `;
 
 type Props = {
-  marketsCount?: BN,
-  accountId?: string
+  bannersCount?: BN,
+  accountId?: string,
+  banners: Banners[],
 };
 
-const MarketViewer = ({ marketsCount, accountId }: Props) => {
-  const count = marketsCount ? marketsCount.toNumber() : 0;
+const BannersViewer = ({ bannersCount, accountId, banners }: Props) => {
+  debugger
+  const count = bannersCount ? bannersCount.toNumber() : 0;
   const markets = [];
   for (let i = 0; i < count; ++i) {
     markets.push(<div>123</div>);
@@ -29,7 +31,7 @@ const MarketViewer = ({ marketsCount, accountId }: Props) => {
       {/* <OwnedKittyViewer key={accountId} accountId={accountId} /> */}
       <div>
         <h2>
-          Total markets count: {count}
+          Total banner count: {count}
         </h2>
         <MarketsWrapper>
         { markets }
@@ -40,5 +42,6 @@ const MarketViewer = ({ marketsCount, accountId }: Props) => {
 };
 
 export default withCalls<Props>(
-  ['query.markets.marketsCount', { propName: 'marketsCount' }]
-)(MarketViewer);
+  ['query.bannerStorage.allBannersCount', { propName: 'bannersCount' }],
+  ['query.bannerStorage.banner', { propName: 'banners' }]
+)(BannersViewer);

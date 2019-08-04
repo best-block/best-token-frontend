@@ -21,8 +21,8 @@ import Tabs, { TabItem } from '@polkadot/ui-app/Tabs';
 // our app-specific styles
 import './index.css';
 
-import Markets from './Markets';
-import Bids from './Bids';
+import Banners from './Banners';
+import MyBanner from './MyBanner';
 // local imports and components
 import AccountSelector from './AccountSelector';
 import SummaryBar from './SummaryBar';
@@ -54,12 +54,12 @@ class App extends React.PureComponent<Props, State> {
     this.state = {
       tabs: [
         {
-          name: 'markets',
-          text: t('Markets')
+          name: 'Banners',
+          text: t('Banners')
         },
         {
-          name: 'bids',
-          text: t('Bids')
+          name: 'MyBanners',
+          text: t('MyBanners')
         }
       ],
       validators: []
@@ -88,8 +88,8 @@ class App extends React.PureComponent<Props, State> {
           />
         </header>
         <Switch>
-          <Route path={`${basePath}/bids`} render={this.renderComponent(Bids)} />
-          <Route render={this.renderComponent(Markets)} />
+          <Route path={`${basePath}/my`} render={this.renderComponent(MyBanner)} />
+          <Route render={this.renderComponent(Banners)} />
         </Switch>
       </main>
     );
@@ -97,6 +97,7 @@ class App extends React.PureComponent<Props, State> {
 
   private onAccountChange = (accountId?: string): void => {
     this.setState({ accountId });
+    console.log(accountId);
   }
   private renderComponent (Component: React.ComponentType<ComponentProps>) {
     return (): React.ReactNode => {

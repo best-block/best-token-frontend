@@ -7,11 +7,13 @@ import styled from 'styled-components';
 import BN from 'bn.js';
 import { Button, TxButton, InputNumber, InputAddress, InputBalance } from '@polkadot/ui-app';
 import { toHash } from '../utils';
+import { U32, U128, Struct, Option, Tuple, AccountId, H256, Vector, Balance, U64, Bool } from '@polkadot/types';
 
 import { ProductIndex } from './types';
 
 type Props = {
-  accountId?: string
+  accountId?: string,
+  bannerId?: H256
 };
 type State = {
   productId?: ProductIndex,
@@ -20,10 +22,6 @@ type State = {
 
 export default class CreateBid extends React.PureComponent<Props> {
   state: State = {};
-
-  private onSetProductId = (productId?: BN) => {
-    this.setState({ productId: productId && new ProductIndex(productId) });
-  }
 
   private onSetPrice = (price?: BN) => {
     this.setState({ price });
@@ -34,7 +32,7 @@ export default class CreateBid extends React.PureComponent<Props> {
     const {
       price
     } = this.state;
-
+    console.log('bannerId, price: ', bannerId, price, '------')
     return (
       <section>
         <h1>Best Token Auction Marketplace</h1>

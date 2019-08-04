@@ -32,10 +32,8 @@ export default class StartBid extends React.PureComponent<Props> {
     console.log('bannerId, price: ', bannerId, price, '------')
     return (
       <section>
-        <h1>Best Token Auction Marketplace</h1>
-
         <div>
-          <h2>Start an auction for this banner</h2>
+          <h2>Bid</h2>
           <div className='ui--row'>
             <div className='large'>
               <InputBalance

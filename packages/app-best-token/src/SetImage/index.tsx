@@ -10,8 +10,8 @@ import { toHash } from '../utils';
 import { U32, U128, Struct, Option, Tuple, AccountId, H256, Vector, Balance, U64, Bool } from '@polkadot/types';
 
 type Props = {
-  accountId: string,
-  bannerId: H256
+  accountId?: string,
+  bannerId?: H256
 };
 type State = {
   imageHash: string
@@ -32,8 +32,6 @@ export default class SetImage extends React.PureComponent<Props> {
     console.log('accountId, bannerId, imageHash: ', accountId, bannerId, imageHash, '------')
     return (
       <section>
-        <h1>Best Token Auction Marketplace</h1>
-
         <div>
           <h2>Set image Url for you banner</h2>
           <div className='ui--row'>

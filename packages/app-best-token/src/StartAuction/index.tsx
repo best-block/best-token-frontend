@@ -33,8 +33,6 @@ export default class CreateBid extends React.PureComponent<Props> {
     console.log('accountId, bannerId, price: ', accountId, bannerId, price, '------')
     return (
       <section>
-        <h1>Best Token Auction Marketplace</h1>
-
         <div>
           <h2>Start an auction for this banner</h2>
           <div className='ui--row'>

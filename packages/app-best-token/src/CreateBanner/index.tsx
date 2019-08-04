@@ -16,28 +16,28 @@ type Props = {
 };
 
 type State = {
-  nameHash: string,
-  urlHash: string,
-  descHash: string,
+  nameHash: H256,
+  urlHash: H256,
+  descHash: H256,
 };
 
 export default class CreateBid extends React.PureComponent<Props> {
   state: State = {};
 
   private onSetName = (value: string) => {
-    const hash = toHash(value);
+    const hash = new H256(toHash(value));
     this.setState({ nameHash: hash });
     console.log('name: ', value, hash);
   }
 
   private onSetUrl = (value: string) => {
-    const hash = toHash(value);
+    const hash = new H256(toHash(value));
     this.setState({ urlHash: hash });
     console.log('url: ', value, hash);
   }
 
   private onSetDesc = (value: string) => {
-    const hash = toHash(value);
+    const hash = new H256(toHash(value));
     this.setState({ descHash: hash });
     console.log('desc: ', value, hash);
   }

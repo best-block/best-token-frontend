@@ -46,9 +46,9 @@ export default class CreateBid extends React.PureComponent<Props> {
               <Button.Group>
                 <TxButton
                   accountId={accountId}
-                  label='Create'
+                  label='Start Auction'
                   params={[bannerId, price]}
-                  tx='bid.ask'
+                  tx='banners.auctionBanner'
                 />
               </Button.Group>
             </div>

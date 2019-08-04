@@ -9,18 +9,15 @@ import { Button, TxButton, InputNumber, InputAddress, InputBalance } from '@polk
 import { toHash } from '../utils';
 import { U32, U128, Struct, Option, Tuple, AccountId, H256, Vector, Balance, U64, Bool } from '@polkadot/types';
 
-import { ProductIndex } from './types';
-
 type Props = {
   accountId?: string,
   bannerId?: H256
 };
 type State = {
-  productId?: ProductIndex,
   price?: BN
 };
 
-export default class CreateBid extends React.PureComponent<Props> {
+export default class StartBid extends React.PureComponent<Props> {
   state: State = {};
 
   private onSetPrice = (price?: BN) => {
@@ -48,9 +45,9 @@ export default class CreateBid extends React.PureComponent<Props> {
               <Button.Group>
                 <TxButton
                   accountId={accountId}
-                  label='Create'
+                  label='Bid'
                   params={[bannerId, price]}
-                  tx='bid.ask'
+                  tx='banners.bid'
                 />
               </Button.Group>
             </div>

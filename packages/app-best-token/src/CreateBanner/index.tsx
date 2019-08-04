@@ -9,21 +9,7 @@ import { Button, TxButton, InputNumber, InputAddress, Input, InputBalance } from
 
 import { U32, U128, Struct, Option, Tuple, AccountId, H256, Vector, Balance, U64, Bool } from '@polkadot/types';
 
-import { hexToU8a, isHex, stringToU8a } from '@polkadot/util';
-import { blake2AsHex } from '@polkadot/util-crypto';
-
-
-const toHash = (data: string): string => {
-  const isHexData = isHex(data);
-  const hash = blake2AsHex(
-    isHexData
-      ? hexToU8a(data)
-      : stringToU8a(data),
-    256
-  );
-
-  return hash;
-};
+import { toHash } from '../utils';
 
 type Props = {
   accountId?: string

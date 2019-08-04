@@ -6,7 +6,7 @@ export class Kitty extends U128 {
   }
 }
 
-export class Banners extends Struct {
+export class Banner extends Struct {
   constructor (value: any) {
         super({
           id: Option.with(H256),
@@ -19,6 +19,10 @@ export class Banners extends Struct {
           bid_end_height: Option.with(U64),
         }, value);
       }
+
+  // get dna (): Uint8Array {
+  //   return this.toU8a();
+  // }
 }
 
 

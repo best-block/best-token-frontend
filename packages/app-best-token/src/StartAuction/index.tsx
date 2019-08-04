@@ -6,6 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BN from 'bn.js';
 import { Button, TxButton, InputNumber, InputAddress, InputBalance } from '@polkadot/ui-app';
+import { toHash } from '../utils';
 
 import { ProductIndex } from './types';
 
@@ -14,7 +15,7 @@ type Props = {
 };
 type State = {
   productId?: ProductIndex,
-  sellPrice?: BN
+  price?: BN
 };
 
 export default class CreateBid extends React.PureComponent<Props> {
@@ -24,45 +25,33 @@ export default class CreateBid extends React.PureComponent<Props> {
     this.setState({ productId: productId && new ProductIndex(productId) });
   }
 
-  private onSetSellPrice = (sellPrice?: BN) => {
-    this.setState({ sellPrice });
+  private onSetPrice = (price?: BN) => {
+    this.setState({ price });
   }
 
   render () {
-    const { accountId } = this.props;
+    const { bannerId, accountId } = this.props;
     const {
-      productId, sellPrice
+      price
     } = this.state;
 
     return (
       <section>
         <h1>Best Token Auction Marketplace</h1>
-        <div>
-          <TxButton
-            accountId={accountId}
-            label='Create New Product'
-            params={[]}
-            tx='bid.create'
-          />
-        </div>
 
         <div>
-          <h2>Create an auction</h2>
+          <h2>Start an auction for this banner</h2>
           <div className='ui--row'>
             <div className='large'>
-              <InputNumber
-                label='Product ID to bid'
-                onChange={this.onSetProductId}
-              />
               <InputBalance
                 label='Base Price'
-                onChange={this.onSetSellPrice}
+                onChange={this.onSetPrice}
               />
               <Button.Group>
                 <TxButton
                   accountId={accountId}
                   label='Create'
-                  params={[productId, sellPrice]}
+                  params={[bannerId, price]}
                   tx='bid.ask'
                 />
               </Button.Group>

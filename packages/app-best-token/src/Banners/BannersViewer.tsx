@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BN from 'bn.js';
 import { withCalls } from '@polkadot/ui-api/with';
-import {Banners} from './types';
+import { Banners } from './types';
 import BannerItem from './BannerItem';
 // import OwnedKittyViewer from './OwnedKittyViewer';
 
@@ -21,7 +21,6 @@ type Props = {
 };
 
 const BannersViewer = ({ bannersCount, accountId, ownedBannersCount, bannersArray }: Props) => {
-  debugger
   const count = bannersCount ? bannersCount.toNumber() : 0;
   // const ownedCount = ownedBannersCount ? ownedBannersCount.toNumber() : 0;
   const banners = [];

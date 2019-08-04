@@ -5,48 +5,47 @@
 import React from 'react';
 import styled from 'styled-components';
 import BN from 'bn.js';
-import { Button, TxButton, InputNumber, InputAddress, InputBalance } from '@polkadot/ui-app';
+import { Button, TxButton, InputNumber, Input, InputBalance } from '@polkadot/ui-app';
 import { toHash } from '../utils';
 import { U32, U128, Struct, Option, Tuple, AccountId, H256, Vector, Balance, U64, Bool } from '@polkadot/types';
-
 
 type Props = {
   accountId?: string,
   bannerId?: H256
 };
 type State = {
-  price?: BN
+  imageHash: string
 };
 
-export default class CreateBid extends React.PureComponent<Props> {
+export default class SetImage extends React.PureComponent<Props> {
   state: State = {};
 
-  private onSetPrice = (price?: BN) => {
-    this.setState({ price });
+  private onSetImage = (value: string) => {
+    this.setState({ imageHash: toHash(value) });
   }
 
   render () {
     const { bannerId, accountId } = this.props;
     const {
-      price
+      imageHash
     } = this.state;
-    console.log('accountId, bannerId, price: ', accountId, bannerId, price, '------')
+    console.log('accountId, bannerId, imageHash: ', accountId, bannerId, imageHash, '------')
     return (
       <section>
         <div>
-          <h2>Start an auction for this banner</h2>
+          <h2>Set image Url for you banner</h2>
           <div className='ui--row'>
             <div className='large'>
-              <InputBalance
-                label='Base Price'
-                onChange={this.onSetPrice}
+              <Input
+                label='Your image url'
+                onChange={this.onSetImage}
               />
               <Button.Group>
                 <TxButton
                   accountId={accountId}
-                  label='Start Auction'
-                  params={[bannerId, price]}
-                  tx='banners.auctionBanner'
+                  label='Confirm'
+                  params={[bannerId, imageHash]}
+                  tx='banners.setImageUrl'
                 />
               </Button.Group>
             </div>

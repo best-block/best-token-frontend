@@ -9,7 +9,6 @@ import { Button, TxButton, InputNumber, InputAddress, InputBalance } from '@polk
 import { toHash } from '../utils';
 import { U32, U128, Struct, Option, Tuple, AccountId, H256, Vector, Balance, U64, Bool } from '@polkadot/types';
 
-
 type Props = {
   accountId?: string,
   bannerId?: H256
@@ -18,7 +17,7 @@ type State = {
   price?: BN
 };
 
-export default class CreateBid extends React.PureComponent<Props> {
+export default class StartBid extends React.PureComponent<Props> {
   state: State = {};
 
   private onSetPrice = (price?: BN) => {
@@ -30,11 +29,11 @@ export default class CreateBid extends React.PureComponent<Props> {
     const {
       price
     } = this.state;
-    console.log('accountId, bannerId, price: ', accountId, bannerId, price, '------')
+    console.log('bannerId, price: ', bannerId, price, '------')
     return (
       <section>
         <div>
-          <h2>Start an auction for this banner</h2>
+          <h2>Bid</h2>
           <div className='ui--row'>
             <div className='large'>
               <InputBalance
@@ -44,9 +43,9 @@ export default class CreateBid extends React.PureComponent<Props> {
               <Button.Group>
                 <TxButton
                   accountId={accountId}
-                  label='Start Auction'
+                  label='Bid'
                   params={[bannerId, price]}
-                  tx='banners.auctionBanner'
+                  tx='banners.bid'
                 />
               </Button.Group>
             </div>

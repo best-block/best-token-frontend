@@ -23,6 +23,7 @@ import './index.css';
 
 import Banners from './Banners';
 import MyBanner from './MyBanner';
+import CreateBanner from './CreateBanner';
 // local imports and components
 import AccountSelector from './AccountSelector';
 import SummaryBar from './SummaryBar';
@@ -74,11 +75,12 @@ class App extends React.PureComponent<Props, State> {
     return (
       // in all apps, the main wrapper is setup to allow the padding
       // and margins inside the application. (Just from a consistent pov)
-      
+
       <main>
-        <SummaryBar />
+        {/* <SummaryBar /> */}
         <AccountSelector onChange={this.onAccountChange} />
-        <Transfer accountId={accountId} />
+        {/* <Transfer accountId={accountId} /> */}
+        <CreateBanner accountId={accountId} />
 
         <header>
           <Tabs

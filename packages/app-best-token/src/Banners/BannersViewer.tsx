@@ -19,11 +19,11 @@ type Props = {
 };
 
 const BannersViewer = ({ bannersCount, accountId, banners }: Props) => {
-  debugger
+  console.log(banners, '==============')
   const count = bannersCount ? bannersCount.toNumber() : 0;
   const markets = [];
   for (let i = 0; i < count; ++i) {
-    markets.push(<div>123</div>);
+    markets.push(<div key={i}>123</div>);
   }
   return (
     <Wrapper>
@@ -43,5 +43,5 @@ const BannersViewer = ({ bannersCount, accountId, banners }: Props) => {
 
 export default withCalls<Props>(
   ['query.bannerStorage.allBannersCount', { propName: 'bannersCount' }],
-  ['query.bannerStorage.banner', { propName: 'banners' }]
+  ['query.bannerStorage.banners', { propName: 'banners' }]
 )(BannersViewer);

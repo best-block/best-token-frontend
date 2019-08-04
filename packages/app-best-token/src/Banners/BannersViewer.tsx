@@ -33,7 +33,6 @@ const BannersViewer = ({ bannersCount, accountId, ownedBannersCount, bannersArra
 
   return (
     <Wrapper>
-      <h1>my product</h1>
       {/* <OwnedKittyViewer key={accountId} accountId={accountId} /> */}
 
       <div>

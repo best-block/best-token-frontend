@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BN from 'bn.js';
 import { withCalls } from '@polkadot/ui-api/with';
-import { Banners } from './types';
+import { Banner } from './types';
 import BannerItem from './BannerItem';
 // import OwnedKittyViewer from './OwnedKittyViewer';
 
@@ -16,8 +16,8 @@ type Props = {
   bannersCount?: BN,
   ownedBannersCount?: BN,
   accountId?: string,
-  banners: Banners[],
-  bannersArray: Banners[],
+  banners: Banner[],
+  bannersArray: Banner[],
 };
 
 const BannersViewer = ({ bannersCount, accountId, ownedBannersCount, bannersArray }: Props) => {
@@ -53,5 +53,4 @@ const BannersViewer = ({ bannersCount, accountId, ownedBannersCount, bannersArra
 
 export default withCalls<Props>(
   ['query.bannerStorage.allBannersCount', { propName: 'bannersCount' }],
-  ['query.bannerStorage.ownedBannerCount', { propName: 'ownedBannersCount' }],
 )(BannersViewer);

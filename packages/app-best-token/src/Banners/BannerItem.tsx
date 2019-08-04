@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { withCalls } from '@polkadot/ui-api/with';
+import { ApiProps } from '@polkadot/ui-api/types';
 import { Hash, H256} from '@plugnet/types';
 import {toHash} from '../utils';
+import { withApi, withMulti } from '@polkadot/ui-api';
 
 import Item from './Item';
 
@@ -18,30 +20,37 @@ const Wrapper = styled.div`
   width: 333px;
 `;
 
-
-
 const Line = styled.div`
   height: 2px;
   background: #eee;
   margin: 10px -10px;
 `;
 
-type Props = {
+type Props = ApiProps & {
   index: number,
   key: number,
-  hash: string,
+  hash: H256,
 };
 
 
-const BannerItem = ({ index, hash }: Props) => {
+const BannerItem = ({ index, hash, api }: Props) => {
+  // let queryHash = api.query.bannerStorage.allBannersArray(index).then(res=>{
+  //   console.log(res.toString(), '-----------+++++')
+  // })
+  // console.log(hash, '++++')
+  if(!hash) return null;
     return (
       <Wrapper>
-        <Item key={hash} hash={new H256(toHash(hash))} />
+        <Item key={hash} hash={hash.toString()} />
       </Wrapper>
     );
 };
 
-// export default withKitty(KittyCard) as React.ComponentType<Props>;
-export default withCalls<Props>(
-  ['query.bannerStorage.allBannersArray', { paramName: 'index', propName: 'hash' }],
-)(BannerItem);
+
+  
+export default withMulti(
+  withCalls<Props>(
+    ['query.bannerStorage.allBannersArray', { paramName: 'index', propName: 'hash' }],
+  )(BannerItem),
+  withApi
+);

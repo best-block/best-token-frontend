@@ -9,12 +9,14 @@ import { Button, TxButton, InputNumber, InputAddress, InputBalance } from '@polk
 import { toHash } from '../utils';
 import { U32, U128, Struct, Option, Tuple, AccountId, H256, Vector, Balance, U64, Bool } from '@polkadot/types';
 
+import { ProductIndex } from './types';
 
 type Props = {
   accountId?: string,
   bannerId?: H256
 };
 type State = {
+  productId?: ProductIndex,
   price?: BN
 };
 

@@ -8,13 +8,15 @@ import { ApiProps } from '@polkadot/ui-api/types';
 import {toHash} from '../utils'
 import { Banner } from './types';
 import { withApi, withMulti } from '@polkadot/ui-api';
+import StartAuction from '../StartAuction';
+import StartBid from '../StartBid';
+import SetImage from '../SetImage';
 
 
 // import withBanners from './withBanners';
 
 
 const Wrapper = styled.div`
-  width: 50%;
 `;
 
 
@@ -22,10 +24,11 @@ type Props = ApiProps & {
   key: string,
   hash: string,
   banner: Banner,
+  accountId?: string
 };
 
 
-const BannerItem = ({ banner, api, hash }: Props) => {
+const BannerItem = ({ banner, api, hash, accountId }: Props) => {
 
   if(!banner) {
     return null;
@@ -37,26 +40,47 @@ const BannerItem = ({ banner, api, hash }: Props) => {
   // });
   // let res = JSON.stringify(banner)
   let obj = banner.toJSON();
-  console.log(obj,'==================')
-    
-    return (
-      <Wrapper>
-        <img style={{width: '100px', height: '100px'}} src={obj.image_url} alt=""/>
-        <div>
-          name : {obj.name}
+  console.log(obj,'==================', banner)
+  const {
+    id,
+    name,
+    desc,
+    image_url: imageUrl,
+    can_bid: canBid,
+    current_bidder: currentBidder,
+    current_price: currentPrice,
+  } = banner;
+  const isOwner = currentBidder.toHex() === accountId;
+  const bannerId = id.toHex();
+  const canBidBool = canBid.toJSON();
+  return (
+    <Wrapper>
+      <img style={{width: '100px', height: '100px'}} src={imageUrl.toHex()} alt=""/>
+      <div>
+        Name: {name.toHex()}
+      </div>
+      <div>
+        Description: {desc.toHex()}
+      </div>
+      <div>
+        Auction Started: {canBidBool ? 'Yes' : 'No'}
+      </div>
+      {
+        canBidBool && <div>
+          <div>
+            Current Price: {currentPrice.toString()}
+          </div>
+          <div>
+            Current Bidder: {currentBidder.toHex()}
+          </div>
         </div>
-        <div>
-          desc : {obj.desc}
-        </div>
-        <div>
-          price: {obj.current_price}
-        </div>
-        <div>
-          bider: {obj.current_bidder}
-        </div>
-      
-      </Wrapper>
-    );
+      }
+
+      {!canBidBool && <StartAuction accountId={accountId} bannerId={bannerId} />}
+      {canBidBool && <StartBid accountId={accountId} bannerId={bannerId} />}
+      {isOwner && <SetImage accountId={accountId} bannerId={bannerId} />}
+    </Wrapper>
+  );
 };
 
 

@@ -25,9 +25,6 @@ import './index.css';
 import Banners from './Banners';
 import MyBanner from './MyBanner';
 import CreateBanner from './CreateBanner';
-import StartAuction from './StartAuction';
-import StartBid from './StartBid';
-import SetImage from './SetImage';
 // local imports and components
 import AccountSelector from './AccountSelector';
 import SummaryBar from './SummaryBar';
@@ -75,7 +72,6 @@ class App extends React.PureComponent<Props, State> {
   render () {
     const { accountId, tabs } = this.state;
     const { allAccounts, basePath } = this.props;
-    const bannerId = new H256('0x489e2bbf40f554eab1213b5a7ae92b78da0d4935804d4bff52b970c8e2afa912');
     return (
       // in all apps, the main wrapper is setup to allow the padding
       // and margins inside the application. (Just from a consistent pov)
@@ -85,9 +81,6 @@ class App extends React.PureComponent<Props, State> {
         <AccountSelector onChange={this.onAccountChange} />
         {/* <Transfer accountId={accountId} /> */}
         <CreateBanner accountId={accountId} />
-        <StartAuction accountId={accountId} bannerId={bannerId} />
-        <StartBid accountId={accountId} bannerId={bannerId} />
-        <SetImage accountId={accountId} bannerId={bannerId} />
 
         <header>
           <Tabs

@@ -17,7 +17,8 @@ const Wrapper = styled.div`
   padding: 10px;
   border-radius: 8px;
   margin: 10px;
-  width: 333px;
+  width: 100%;
+  max-width: 900px;
 `;
 
 const Line = styled.div`
@@ -30,10 +31,11 @@ type Props = ApiProps & {
   index: number,
   key: number,
   hash: H256,
+  accountId?: string
 };
 
 
-const BannerItem = ({ index, hash, api }: Props) => {
+const BannerItem = ({ index, hash, api, accountId }: Props) => {
   // let queryHash = api.query.bannerStorage.allBannersArray(index).then(res=>{
   //   console.log(res.toString(), '-----------+++++')
   // })
@@ -41,13 +43,13 @@ const BannerItem = ({ index, hash, api }: Props) => {
   if(!hash) return null;
     return (
       <Wrapper>
-        <Item key={hash} hash={hash.toString()} />
+        <Item key={hash} hash={hash.toString()} accountId={accountId} />
       </Wrapper>
     );
 };
 
 
-  
+
 export default withMulti(
   withCalls<Props>(
     ['query.bannerStorage.allBannersArray', { paramName: 'index', propName: 'hash' }],

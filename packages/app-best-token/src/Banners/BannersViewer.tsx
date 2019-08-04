@@ -28,17 +28,14 @@ const BannersViewer = ({ bannersCount, accountId, ownedBannersCount, bannersArra
   console.log(bannersArray,'-----------');
 
   for (let i = 0; i < count; ++i) {
-    banners.push(<BannerItem key={i} index={i} ></BannerItem>);
+    banners.push(<BannerItem key={i} index={i} accountId={accountId}></BannerItem>);
   }
 
-  for (let i = 0; i < count; ++i) {
-    banners.push(<div>123</div>);
-  }
   return (
     <Wrapper>
       <h1>my product</h1>
       {/* <OwnedKittyViewer key={accountId} accountId={accountId} /> */}
-      
+
       <div>
         <h2>
           Total banner count: {count}
